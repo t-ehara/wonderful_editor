@@ -29,7 +29,7 @@ RSpec.describe User, type: :model do
   context "nameを指定していない時" do
     let(:user) { build(:user, name: nil) }
     it "user作成に失敗する" do
-      user.save!
+      user.save
       expect(user).to be_invalid
     end
   end
@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
   context "nameが30文字を超えた時" do
     let(:user) { build(:user, name: "a" * 31) }
     it "ユーザー作成に失敗する" do
-      user.save!
+      user.save
       expect(user).to be_invalid
     end
   end
@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
   context "emailが指定されていない時" do
     let(:user) { build(:user, email: nil) }
     it "user作成に失敗する" do
-      user.save!
+      user.save
       expect(user).to be_invalid
     end
   end
@@ -70,7 +70,7 @@ RSpec.describe User, type: :model do
   context "passwordを指定しない時" do
     let(:user) { build(:user, password: nil) }
     it "user作成に失敗する" do
-      user.save!
+      user.save
       expect(user).to be_invalid
     end
   end
