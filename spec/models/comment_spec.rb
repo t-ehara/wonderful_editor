@@ -21,5 +21,24 @@
 require "rails_helper"
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "commentが存在する時" do
+    let!(:comment) { build(:comment) }
+    it "commentが作成される" do
+      expect(comment).to be_valid
+    end
+  end
+
+  context "commentが存在しない時" do
+    let!(:comment) { build(:comment, body: nil) }
+    it "commentが作成されない" do
+      expect(comment).to be_invalid
+    end
+  end
+
+  context "commentが50文字を超えた時" do
+    let!(:comment) { build(:comment, body: Faker::Alphanumeric.alpha(number: 51)) }
+    it "commentが作成されない" do
+      expect(comment).to be_invalid
+    end
+  end
 end
