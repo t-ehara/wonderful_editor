@@ -32,6 +32,8 @@ jobs:
           bundle install --path vendor/bundle --jobs 4
       - name: Setup Database
         run: |
+          sudo ln /lib64/libffi.so.6 /lib64/libffi.so.7
+          sudo ld config
           cp -v config/database.yml.ci config/database.yml
           bundle exec rails db:create
           bundle exec rails db:schema:load
